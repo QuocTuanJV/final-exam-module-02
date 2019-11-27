@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Product</title>
+</head>
+<body>
+<p><h1>Create Product</h1></p>
+<form th:action="@{/product-create}" th:method="post" th:object="${product}">
+    <input th:type="hidden" th:field="*{id}">
+    <table>
+        <tr>
+            <td>Code:</td>
+            <td><input th:field="*{code}"></td>
+        </tr>
+        <tr>
+            <td>Name:</td>
+            <td><input th:field="*{name}"></td>
+        </tr>
+        <tr>
+            <td>Import Date:</td>
+            <td><input type="date" th:field="*{importDate}"></td>
+        </tr>
+        <tr>
+            <td>Description:</td>
+            <td><input th:field="*{description}"></td>
+        </tr>
+        <tr>
+            <td>Price:</td>
+            <td><input th:field="*{price}"></td>
+        </tr>
+        <tr>
+            <td>Amount:</td>
+            <td><input th:field="*{amount}"></td>
+        </tr>
+        <tr>
+            <td>Category:</td>
+            <td>
+                <select th:field="*{category}">
+                    <!--/*@thymesVar id="categories" type=""*/-->
+                    <option th:each="ca:${categories}" th:value="${ca.getId()}" th:text="${ca.getName()}"
+                    >
+                    </option>
+                </select>
+            </td>
+        </tr>
+        <p></p>
+        <tr>
+         <td><input type="submit" value="Create Product" onclick="return confirm('Do you want to create')"></td>
+        </tr>
+    </table>
+</form>
+<p><td><a href="/product-list"><button>Back</button></a></td></p>
+</body>
+</html>
